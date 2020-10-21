@@ -39,5 +39,16 @@ public class InvoiceGeneratorTest {
 		InvoiceSummary expectedInvoiceSummry = new InvoiceSummary(2, 65);
 		Assert.assertEquals(expectedInvoiceSummry, invoiceSummary);
 	}
+	
+	//To test total fare for a given userId
+	@Test
+	public void givenUserIDRidesShouldReturnInvoiceSummary() {
+		Ride[] rides = { new Ride(5, 10), new Ride(0.1, 2) };
+		RideRepository rideRepository = new RideRepository();
+		rideRepository.addRides("abc1", rides);
+		InvoiceSummary invoiceSummary = invoiceGenerator.calculateFareMultipleRides(rideRepository.getRides("abc1"));
+		InvoiceSummary expectedInvoiceSummry = new InvoiceSummary(2, 65);
+		Assert.assertEquals(expectedInvoiceSummry, invoiceSummary);
+	}
 
 }
