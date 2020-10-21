@@ -26,11 +26,11 @@ public class CabInvoiceGenerator {
 	}
 
 	// To calculate fare for multiple rides
-	public double calculateFareMultipleRides(Ride[] rides) {
+	public InvoiceSummary calculateFareMultipleRides(Ride[] rides) {
 		double totalFare = 0.0;
 		for (Ride ride : rides)
-			totalFare += this.calculateFare(ride.distance, ride.time);
-		return totalFare;
+			totalFare += this.calculateFare(ride.getDistance(), ride.getTime());
+		return new InvoiceSummary(rides.length, totalFare);
 	}
 
 }

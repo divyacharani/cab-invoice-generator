@@ -1,11 +1,17 @@
 package com.bridgelabz.cabinvoicegenerator;
 
-import static org.junit.Assert.*;
-
 import org.junit.Assert;
+import org.junit.Before;
 import org.junit.Test;
 
 public class InvoiceGeneratorTest {
+
+	CabInvoiceGenerator invoiceGenerator;
+
+	@Before
+	public void init() {
+		invoiceGenerator = new CabInvoiceGenerator();
+	}
 
 	// To test total fare when greater than minimum fare
 	@Test
@@ -27,12 +33,11 @@ public class InvoiceGeneratorTest {
 
 	// To test total fare for multiple rides
 	@Test
-	public void givenMultipleRidesShouldReturnTotalFare() {
-
-		CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
-		 Ride[] rides = { new Ride(5,10), new Ride(0.1, 2)};
-		double totalFare = invoiceGenerator.calculateFareMultipleRides(rides);
-		Assert.assertEquals(65, totalFare, 0.0);
+	public void givenMultipleRides_shouldReturnInvoiceSummary() {
+		Ride[] rides = { new Ride(5, 10), new Ride(0.1, 2) };
+		InvoiceSummary invoiceSummary = invoiceGenerator.calculateFareMultipleRides(rides);
+		InvoiceSummary expectedInvoiceSummry = new InvoiceSummary(2, 65);
+		Assert.assertEquals(expectedInvoiceSummry, invoiceSummary);
 	}
 
 }
