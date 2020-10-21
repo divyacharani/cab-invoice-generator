@@ -25,4 +25,14 @@ public class InvoiceGeneratorTest {
 		Assert.assertEquals(5, totalFare, 0.0);
 	}
 
+	// To test total fare for multiple rides
+	@Test
+	public void givenMultipleRidesShouldReturnTotalFare() {
+
+		CabInvoiceGenerator invoiceGenerator = new CabInvoiceGenerator();
+		 Ride[] rides = { new Ride(5,10), new Ride(0.1, 2)};
+		double totalFare = invoiceGenerator.calculateFareMultipleRides(rides);
+		Assert.assertEquals(65, totalFare, 0.0);
+	}
+
 }
