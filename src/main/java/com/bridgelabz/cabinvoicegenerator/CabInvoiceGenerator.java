@@ -1,5 +1,7 @@
 package com.bridgelabz.cabinvoicegenerator;
 
+
+import java.util.List;
 import org.apache.logging.log4j.LogManager;
 import org.apache.logging.log4j.Logger;
 
@@ -35,11 +37,11 @@ public class CabInvoiceGenerator {
 	}
 
 	// To calculate fare for multiple rides
-	public InvoiceSummary calculateFareMultipleRides(Ride[] rides) {
+	public InvoiceSummary calculateFareMultipleRides(List<Ride> list) {
 		double totalFare = 0.0;
-		for (Ride ride : rides)
+		for (Ride ride : list)
 			totalFare += this.calculateFare(ride.getDistance(), ride.getTime(), ride.getType());
-		return new InvoiceSummary(rides.length, totalFare);
+		return new InvoiceSummary(list.size(), totalFare);
 	}
 
 }
